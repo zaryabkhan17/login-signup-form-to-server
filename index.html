@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+
+</head>
+
+
+<body>
+
+
+
+    <h2> Sign Up</h2>
+
+
+
+    <form onsubmit="return signup()">
+
+        Name:
+        <input type="text" id="Uname" maxlength="15" placeholder="First Name" required="required">
+        <br>
+        <br>
+        E-mail:
+        <input type="text" id="email" maxlength="30" placeholder="email@gmail.com" required="required">
+
+        <br>
+        <br>
+        Password :
+        <input type="password" id="password" required="required">
+
+        <button>submit</button>
+    </form>
+    <p id="qwer"></p>
+
+    <script>
+        function signup() {
+
+            let Name1 = document.getElementById("Uname").value;
+            let email1 = document.getElementById("email").value;
+            let password1 = document.getElementById("password").value;
+            let user = {
+                Name: Name1,
+                email: email1,
+                password: password1,
+            };
+            const Http = new XMLHttpRequest();
+            const url = 'http://localhost:3000/signup';
+            Http.open("POST", url);
+
+            Http.setRequestHeader("Content-Type", "application/json");
+            Http.send(JSON.stringify(user));
+
+            Http.onreadystatechange = () => {
+                console.log(Http.responseText);
+                document.getElementById("qwer").innerHTML = Http.responseText;
+            }
+            return false;
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+
+<body>
+    <h1>Login Form </h1>
+
+    <form action="#" onsubmit="return login()">
+        E-mail:
+        <input type="text" placeholder="email@gmail.com" id="2ndemail" required>
+        <br>
+        <br>
+        Password :
+        <input type="password" placeholder="*********" id="2ndpassword" required>
+        <br>
+        <br>
+        <button>Login</button>
+    </form>
+
+    <script>
+
+        function login() {
+            let user = {
+
+                email: document.getElementById("2ndemail").value,
+                password: document.getElementById("2ndpassword").value,
+            };
+            const Http = new XMLHttpRequest();
+            const url = 'http://localhost:3000/login';
+            Http.open("POST", url);
+
+            Http.setRequestHeader("Content-Type", "application/json");
+            Http.send(JSON.stringify(user));
+
+            Http.onreadystatechange = () => {
+                console.log(Http.responseText);
+                document.write(Http.responseText);
+            }
+            return false;
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
